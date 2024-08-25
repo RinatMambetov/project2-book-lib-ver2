@@ -5,7 +5,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.rinat.bookLib.models.Book;
-import ru.rinat.bookLib.models.Person;
 
 import java.util.List;
 
@@ -17,6 +16,11 @@ public class BookDAO {
     @Autowired
     public BookDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public List<Book> index() {
+        return jdbcTemplate.query("SELECT * FROM book", new BeanPropertyRowMapper<>(Book.class));
+
     }
 
     public List<Book> indexByPersonId(int personId) {

@@ -1,7 +1,7 @@
 create table person(
     id serial primary key,
-    full_name text unique,
-    birth_year int
+    full_name text unique not null,
+    birth_year int not null
 )
 
 insert into person(full_name, birth_year)
@@ -15,9 +15,9 @@ values
 create table book(
     id serial primary key,
     person_id int references person(id) on delete set null,
-    title text,
-    author text,
-    year int
+    title text not null,
+    author text not null,
+    year int not null
 )
 
 insert into book(title, author, year)
@@ -32,6 +32,6 @@ values
 
 update book set person_id=1 where id=1
 update book set person_id=1 where id=2
-
-
+update book set person_id=8 where id=3
+update book set person_id=8 where id=4
 
