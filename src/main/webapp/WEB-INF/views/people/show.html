@@ -9,7 +9,7 @@
 <p th:text="${person.getFullName() + ', ' + person.getBirthYear()}">VALUE</p>
 
 <p th:if="${#lists.isEmpty(books)}">
-    Пользователь пока не взял ни одной книги.
+    Пользователь пока не взял ни одной книги
 </p>
 
 <div th:if="${not #lists.isEmpty(books)}">
@@ -25,7 +25,7 @@
 </div>
 
 <hr/>
-<form th:action="@{/people/edit(id=${person.getId()})}" th:method="get">
+<form th:action="@{/people/{id}/edit(id=${person.getId()})}" th:method="get">
     <input type="submit" value="Редактировать"/>
 </form>
 <br/>
