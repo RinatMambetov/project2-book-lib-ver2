@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.rinat.bookLib.models.Book;
 import ru.rinat.bookLib.models.Person;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class PersonDAO {
@@ -39,5 +41,15 @@ public class PersonDAO {
 
     public void delete(int id) {
         jdbcTemplate.update("DELETE FROM Person WHERE id=?", id);
+    }
+
+    public List<Book> getBooksByPersonId(int id) {
+        return jdbcTemplate.query("SELECT * FROM book WHERE person_id=?",
+                new BeanPropertyRowMapper<>(Book.class), id);
+    }
+
+    public Optional<Person> getPersonByFullName(String fullName) {
+        return Optional.ofNullable(jdbcTemplate.queryForObject("SELECT * FROM person WHERE full_name=?",
+                new BeanPropertyRowMapper<>(Person.class), fullName));
     }
 }

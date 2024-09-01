@@ -6,7 +6,6 @@ import jakarta.validation.constraints.Size;
 
 public class Book {
     private int id;
-    private int personId;
 
     @NotEmpty(message = "Title should not be empty")
     @Size(min = 2, max = 30, message = "Title should be between 2 and 30 characters")
@@ -22,9 +21,8 @@ public class Book {
     public Book() {
     }
 
-    public Book(int id, int personId, String title, String author, int year) {
+    public Book(int id, String title, String author, int year) {
         this.id = id;
-        this.personId = personId;
         this.title = title;
         this.author = author;
         this.year = year;
@@ -36,14 +34,6 @@ public class Book {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(int personId) {
-        this.personId = personId;
     }
 
     public String getTitle() {
