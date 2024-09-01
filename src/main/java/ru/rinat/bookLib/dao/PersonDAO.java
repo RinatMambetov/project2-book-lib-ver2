@@ -49,7 +49,8 @@ public class PersonDAO {
     }
 
     public Optional<Person> getPersonByFullName(String fullName) {
-        return Optional.ofNullable(jdbcTemplate.queryForObject("SELECT * FROM person WHERE full_name=?",
-                new BeanPropertyRowMapper<>(Person.class), fullName));
+        return jdbcTemplate.query("SELECT * FROM person WHERE full_name=?",
+                        new BeanPropertyRowMapper<>(Person.class), fullName)
+                .stream().findFirst();
     }
 }
