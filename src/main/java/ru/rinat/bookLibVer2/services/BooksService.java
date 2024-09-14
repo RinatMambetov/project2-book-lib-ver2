@@ -10,6 +10,7 @@ import ru.rinat.bookLibVer2.models.Person;
 import ru.rinat.bookLibVer2.repositories.BooksRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +25,7 @@ public class BooksService {
     }
 
     public List<Book> findAll(Boolean sortByYear) {
-        if (sortByYear) {
+        if (sortByYear != null) {
             return booksRepository.findAll(Sort.by("year"));
         } else {
             return booksRepository.findAll();
@@ -34,7 +35,7 @@ public class BooksService {
     public List<Book> findPage(Integer page, Integer booksPerPage, Boolean sortByYear) {
         if (page == null || booksPerPage == null) {
             return findAll(sortByYear);
-        } else if (sortByYear) {
+        } else if (sortByYear != null) {
             return booksRepository.findAll(PageRequest.of(page, booksPerPage, Sort.by("year"))).getContent();
         } else {
             return booksRepository.findAll(PageRequest.of(page, booksPerPage)).getContent();
@@ -61,6 +62,8 @@ public class BooksService {
         Person person = oldBook.getPerson();
         book.setId(id);
         book.setPerson(person);
+        book.setTakenAt(oldBook.getTakenAt());
+        book.setExpired(oldBook.isExpired());
         booksRepository.save(book);
     }
 
@@ -79,6 +82,8 @@ public class BooksService {
         Person person = book.getPerson();
         person.getBooks().remove(book);
         book.setPerson(null);
+        book.setExpired(false);
+        book.setTakenAt(null);
         booksRepository.save(book);
     }
 
@@ -86,11 +91,16 @@ public class BooksService {
     public void assign(int id, Person person) {
         Book book = findById(id);
         book.setPerson(person);
+        book.setTakenAt(new Date());
         List<Book> books = person.getBooks();
         if (books == null) {
             books = new ArrayList<>();
         }
         books.add(book);
         update(id, book);
+    }
+
+    public List<Book> searchByTitle(String query) {
+        return booksRepository.findByTitleContainingIgnoreCase(query);
     }
 }

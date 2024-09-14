@@ -17,7 +17,8 @@ create table book(
     person_id int references person(id) on delete set null,
     title text not null,
     author text not null,
-    year int not null
+    year int not null,
+    taken_at timestamp
 )
 
 insert into book(title, author, year)
@@ -32,6 +33,7 @@ values
 
 update book set person_id=1 where id=1
 update book set person_id=1 where id=2
-update book set person_id=8 where id=3
-update book set person_id=8 where id=4
-
+update book set person_id=2 where id=3
+update book set person_id=2 where id=4
+update book set taken_at=now()-interval '11 day' where id=1
+update book set taken_at=now()-interval '5 day' where id=2

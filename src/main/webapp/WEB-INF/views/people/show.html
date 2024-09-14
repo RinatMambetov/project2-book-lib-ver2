@@ -8,18 +8,19 @@
 
 <p th:text="${person.getFullName() + ', ' + person.getBirthYear()}">VALUE</p>
 
-<p th:if="${#lists.isEmpty(books)}">
+<p th:if="${books.isEmpty()}">
     Пользователь пока не взял ни одной книги
 </p>
 
-<div th:if="${not #lists.isEmpty(books)}">
+<div th:if="${!books.isEmpty()}">
     <hr/>
     <h4>Книги:</h4>
     <ul style="list-style-type: none; padding: 0; margin: 0;">
         <li th:each="book : ${books}"
+            th:style="${book.isExpired()} ? 'color:red' : 'color:black'"
             th:text="${book.getTitle()} + ', '
-                    + ${book.getAuthor()} +', '
-                    + ${book.getYear()}">book
+            + ${book.getAuthor()} +', '
+            + ${book.getYear()}">book
         </li>
     </ul>
 </div>

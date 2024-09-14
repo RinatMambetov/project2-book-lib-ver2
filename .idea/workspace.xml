@@ -7,7 +7,13 @@
     <list default="true" id="09ae5370-67bd-4c44-9aa8-d9cd7acc9d20" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rinat/bookLibVer2/controllers/BooksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rinat/bookLibVer2/controllers/BooksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rinat/bookLibVer2/models/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rinat/bookLibVer2/models/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rinat/bookLibVer2/repositories/BooksRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rinat/bookLibVer2/repositories/BooksRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/rinat/bookLibVer2/services/BooksService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rinat/bookLibVer2/services/BooksService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/rinat/bookLibVer2/services/PersonsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/rinat/bookLibVer2/services/PersonsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/show.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sql/create.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/sql/create.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,16 +64,16 @@
     "Smart Tomcat.Tomcat10.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/rinat/IdeaProjects/project2-book-lib-ver2/src/main/resources",
+    "last_opened_file_path": "/Users/rinat/IdeaProjects/project2-book-lib-ver2/src/main/webapp/WEB-INF/views/books",
     "rearrange.code.on.save": "true",
     "settings.editor.selected.configurable": "preferences.general"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books" />
       <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF" />
       <recent name="$PROJECT_DIR$/src" />
     </key>

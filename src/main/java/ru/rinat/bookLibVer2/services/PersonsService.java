@@ -8,6 +8,9 @@ import ru.rinat.bookLibVer2.models.Book;
 import ru.rinat.bookLibVer2.models.Person;
 import ru.rinat.bookLibVer2.repositories.PersonsRepository;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +32,15 @@ public class PersonsService {
         Optional<Person> person = personsRepository.findById(id);
         if (person.isPresent()) {
             Hibernate.initialize(person.get().getBooks());
+            List<Book> books = person.get().getBooks();
+            for (Book book : books) {
+                Instant takenAtInstant = book.getTakenAt().toInstant();
+                Instant nowInstant = Instant.now();
+                long daysDiff = ChronoUnit.DAYS.between(takenAtInstant, nowInstant);
+                if (daysDiff > 10) {
+                    book.setExpired(true);
+                }
+            }
             return person.get();
         } else {
             throw new IllegalArgumentException();
