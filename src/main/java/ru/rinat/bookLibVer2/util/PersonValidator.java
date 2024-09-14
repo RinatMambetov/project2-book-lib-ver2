@@ -1,19 +1,19 @@
-package ru.rinat.bookLib.util;
+package ru.rinat.bookLibVer2.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import ru.rinat.bookLib.dao.PersonDAO;
-import ru.rinat.bookLib.models.Person;
+import ru.rinat.bookLibVer2.models.Person;
+import ru.rinat.bookLibVer2.services.PersonsService;
 
 @Component
 public class PersonValidator implements Validator {
-    private final PersonDAO personDAO;
+    private final PersonsService personsService;
 
     @Autowired
-    public PersonValidator(PersonDAO personDAO) {
-        this.personDAO = personDAO;
+    public PersonValidator(PersonsService personsService) {
+        this.personsService = personsService;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class PersonValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Person person = (Person) target;
-        if (personDAO.getPersonByFullName(person.getFullName()).isPresent()) {
+        if (!personsService.findByFullName(person.getFullName()).isEmpty()) {
             errors.rejectValue("fullName", "person.fullName.exists",
                     "Person with this full name already exists");
         }
