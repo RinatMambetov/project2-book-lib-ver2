@@ -26,9 +26,15 @@ public class BooksController {
         this.personsService = personsService;
     }
 
+    //    http://localhost:8080/books?page=1&books_per_page=3
+    //    http://localhost:8080/books?sort_by_year=true
+    //    http://localhost:8080/books?sort_by_year=true&page=1&books_per_page=3
     @GetMapping()
-    public String index(Model model) {
-        model.addAttribute("books", booksService.findAll());
+    public String index(Model model,
+                        @RequestParam(value = "page", required = false) Integer page,
+                        @RequestParam(value = "books_per_page", required = false) Integer booksPerPage,
+                        @RequestParam(value = "sort_by_year", required = false) Boolean sortByYear) {
+        model.addAttribute("books", booksService.findPage(page, booksPerPage, sortByYear));
         return "books/index";
     }
 
@@ -93,5 +99,10 @@ public class BooksController {
     public String assign(@PathVariable("id") int id, @ModelAttribute("person") Person person) {
         booksService.assign(id, person);
         return "redirect:/books/" + id;
+    }
+
+    @GetMapping("/search")
+    public String search() {
+        return "books/search";
     }
 }

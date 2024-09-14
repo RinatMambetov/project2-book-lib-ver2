@@ -1,6 +1,8 @@
 package ru.rinat.bookLibVer2.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.rinat.bookLibVer2.models.Book;
@@ -21,8 +23,22 @@ public class BooksService {
         this.booksRepository = booksRepository;
     }
 
-    public List<Book> findAll() {
-        return booksRepository.findAll();
+    public List<Book> findAll(Boolean sortByYear) {
+        if (sortByYear) {
+            return booksRepository.findAll(Sort.by("year"));
+        } else {
+            return booksRepository.findAll();
+        }
+    }
+
+    public List<Book> findPage(Integer page, Integer booksPerPage, Boolean sortByYear) {
+        if (page == null || booksPerPage == null) {
+            return findAll(sortByYear);
+        } else if (sortByYear) {
+            return booksRepository.findAll(PageRequest.of(page, booksPerPage, Sort.by("year"))).getContent();
+        } else {
+            return booksRepository.findAll(PageRequest.of(page, booksPerPage)).getContent();
+        }
     }
 
     public Book findById(int id) {
